@@ -4,21 +4,23 @@ import { toast } from 'react-toastify';
 
 import history from '~/services/history';
 import api from '~/services/api';
-import { searchSuccess } from './actions';
+import { searchSuccess, searchFailure } from './actions';
 
 export function* getUser({ payload }) {
   try {
-    const { username } = payload;
+    const { login } = payload;
 
-    const responseUser = yield call(api.get, `/users/${username}`);
-    const repos = yield call(api.get, `/users/${username}/repos`);
+    const responseUser = yield call(api.get, `/users/${login}`);
+    const repos = yield call(api.get, `/users/${login}/repos`);
 
     yield put(searchSuccess(responseUser.data, repos.data));
 
     history.push('/users');
   } catch (err) {
     toast.error('User not found');
+
+    yield put(searchFailure());
   }
 }
 
-export default all([takeLatest('@githubsearch/SEARCH_REQUEST', getUser)]);
+export default all([takeLatest('@user/SEARCH_REQUEST', getUser)]);

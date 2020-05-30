@@ -16,6 +16,7 @@ export default function search(state = INITIAL_STATE, action) {
       case '@user/SEARCH_SUCCESS': {
         draft.user = action.payload.user;
         draft.repos = action.payload.repos;
+        draft.loading = false;
         break;
       }
       case '@user/SEARCH_FAILURE': {

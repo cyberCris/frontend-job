@@ -1,7 +1,7 @@
-export function searchRequest(username) {
+export function searchRequest(login) {
   return {
     type: '@user/SEARCH_REQUEST',
-    payload: { username },
+    payload: { login },
   };
 }
 

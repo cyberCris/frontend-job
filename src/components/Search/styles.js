@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   background: #242435;
-  height: 100%;
   display: flex;
   flex-direction: ${(props) => (props.row ? 'row' : 'column')};
   align-items: center;
