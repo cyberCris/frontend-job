@@ -1,9 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 
-export default createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+import 'react-toastify/dist/ReactToastify.css';
 
+export default createGlobalStyle`
   *{
     margin: 0;
     padding: 0;
@@ -26,7 +25,8 @@ export default createGlobalStyle`
 
   body, input, button{
     color: #2e2f45;
-    font: 14px 'Poppins', sans-serif;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
   }
 
   a{
