@@ -1,17 +1,20 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 100%;
+  height: ${(props) => (!props.row ? '100%' : '')};
   display: flex;
   flex-direction: ${(props) => (props.row ? 'row' : 'column')};
   align-items: center;
   justify-content: center;
+  padding: ${(props) => (props.row ? '12px' : 0)};
+  margin-bottom: ${(props) => (props.row ? '32px' : 0)};
 
   h1 {
     color: #f5f5f6;
     font-size: 25px;
     font-weight: 500;
     text-align: center;
+    margin-right: ${(props) => (props.row ? '20px' : 0)};
 
     span {
       color: #b6b8bd;

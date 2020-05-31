@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { searchRequest } from '~/store/modules/user/actions';
 
-import { Container, Form, Center } from './styles';
+import { Container, Form } from './styles';
 
 export default function Search({ row }) {
   const user = useSelector((state) => state.user.user);
