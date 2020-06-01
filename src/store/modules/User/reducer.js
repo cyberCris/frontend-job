@@ -23,6 +23,15 @@ export default function search(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
+      case '@user/UPDATE_REPOS_REQUEST': {
+        draft.loading = true;
+        break;
+      }
+      case '@user/UPDATE_REPOS_SUCCESS': {
+        draft.repos = action.payload.repos;
+        draft.loading = false;
+        break;
+      }
       default:
     }
   });

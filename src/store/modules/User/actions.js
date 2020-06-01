@@ -17,3 +17,17 @@ export function searchFailure() {
     type: '@user/SEARCH_FAILURE',
   };
 }
+
+export function updateReposRequest(login, page) {
+  return {
+    type: '@user/UPDATE_REPOS_REQUEST',
+    payload: { login, page },
+  };
+}
+
+export function updateReposSuccess(repos) {
+  return {
+    type: '@user/UPDATE_REPOS_SUCCESS',
+    payload: { repos },
+  };
+}

@@ -73,3 +73,21 @@ export const Star = styled.div`
 export const Title = styled.h3`
   font-weight: 100;
 `;
+
+export const Navigation = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: ${(props) => (props.start ? 'flex-start' : 'flex-end')};
+  padding: 20px;
+`;
+
+export const Button = styled.button`
+  border: 0;
+  background: none;
+  display: flex;
+  align-items: center;
+`;
+
+export const Hidden = styled.div`
+  display: hidden;
+`;
