@@ -18,16 +18,9 @@ export function searchFailure() {
   };
 }
 
-export function updateReposRequest(login, page) {
+export function searchRepo(repos) {
   return {
-    type: '@user/UPDATE_REPOS_REQUEST',
-    payload: { login, page },
-  };
-}
-
-export function updateReposSuccess(repos) {
-  return {
-    type: '@user/UPDATE_REPOS_SUCCESS',
+    type: '@user/SEARCH_REPOS',
     payload: { repos },
   };
 }

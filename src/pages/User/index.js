@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable comma-dangle */
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { orderBy } from 'lodash';
 import { PulseLoader } from 'react-spinners';
@@ -11,8 +12,10 @@ import { GoPackage } from 'react-icons/go';
 import Grid from '@material-ui/core/Grid';
 import CardContent from '@material-ui/core/CardContent';
 
+import { toast } from 'react-toastify';
 import Search from '~/components/Search';
-import { updateReposRequest } from '~/store/modules/user/actions';
+import { searchRepo } from '~/store/modules/user/actions';
+import api from '~/services/api';
 
 import {
   Container,
@@ -32,6 +35,8 @@ export default function User() {
   const dispatch = useDispatch();
 
   const [page, setPage] = useState(1);
+  const [disabledB, setDisabledB] = useState(false);
+  const [repoLoading, setRepoLoading] = useState(false);
 
   const user = useSelector((state) => state.user.user);
   const repositories = useSelector((state) => state.user.repos);
@@ -39,27 +44,37 @@ export default function User() {
 
   const sortedRepos = orderBy(repositories, ['stargazers_count'], 'desc');
 
-  function handleNext() {
-    console.log('chamou next');
-    console.log('page antes do set', page);
-    if (page > 0) {
-      setPage(page + 1);
-      dispatch(updateReposRequest(user.login, page));
+  useEffect(() => {
+    if (page === 1) {
+      setDisabledB(true);
+    } else {
+      setDisabledB(false);
     }
-    console.log('page dps', page);
-    console.log(sortedRepos);
+  }, [page]);
+
+  const GetRepos = useCallback(
+    async (login, pag) => {
+      try {
+        const { data } = await api.get(
+          `/users/${login}/repos?page=${pag}&per_page=10`
+        );
+
+        dispatch(searchRepo(data));
+      } catch (err) {
+        toast.error(err);
+      }
+    },
+    [dispatch]
+  );
+
+  function handleNext() {
+    setPage(page + 1);
+    GetRepos(user.login, page + 1);
   }
 
   function handlePrevious() {
-    console.log('chamou back');
-    console.log('page antes do set', page);
-    if (page > 0 && page !== 1) {
-      setPage(page - 1);
-      dispatch(updateReposRequest(user.login, page));
-    }
-    console.log('login', user.login);
-    console.log('page dps', page);
-    console.log(sortedRepos);
+    setPage(page - 1);
+    GetRepos(user.login, page - 1);
   }
 
   return (
@@ -128,7 +143,12 @@ export default function User() {
                 <Grid container spacing={2}>
                   <Grid item sm={6} xs={6}>
                     <Navigation>
-                      <Button type="button" onClick={handlePrevious} left>
+                      <Button
+                        type="button"
+                        onClick={handlePrevious}
+                        disabled={disabledB}
+                        left
+                      >
                         <FiArrowLeft size={30} color="#fff" />
                       </Button>
                     </Navigation>

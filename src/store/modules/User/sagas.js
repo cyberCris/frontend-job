@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 import history from '~/services/history';
 import api from '~/services/api';
-import { searchSuccess, searchFailure, updateReposSuccess } from './actions';
+import { searchSuccess, searchFailure } from './actions';
 
 export function* getUser({ payload }) {
   try {
@@ -26,22 +26,4 @@ export function* getUser({ payload }) {
   }
 }
 
-export function* updateRepos({ payload }) {
-  try {
-    const { login, page } = payload;
-
-    const repos = yield call(
-      api.get,
-      `/users/${login}/repos?page=${page}&per_page=10`
-    );
-
-    yield put(updateReposSuccess(repos.data));
-  } catch (err) {
-    toast.error(err);
-  }
-}
-
-export default all([
-  takeLatest('@user/SEARCH_REQUEST', getUser),
-  takeLatest('@user/UPDATE_REPOS_REQUEST', updateRepos),
-]);
+export default all([takeLatest('@user/SEARCH_REQUEST', getUser)]);

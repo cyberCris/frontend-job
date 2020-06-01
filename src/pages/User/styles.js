@@ -86,6 +86,10 @@ export const Button = styled.button`
   background: none;
   display: flex;
   align-items: center;
+
+  &:disabled {
+    opacity: 0.3;
+  }
 `;
 
 export const Hidden = styled.div`

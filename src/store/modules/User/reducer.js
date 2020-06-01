@@ -32,6 +32,10 @@ export default function search(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
+      case '@user/SEARCH_REPOS': {
+        draft.repos = action.payload.repos;
+        break;
+      }
       default:
     }
   });
