@@ -34,6 +34,7 @@ export const Profile = styled.div`
     width: 110px;
     border-radius: 50%;
     border: 3px solid #fff;
+    background: #eee;
   }
 `;
 

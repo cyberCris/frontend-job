@@ -16,8 +16,11 @@ export function* getUser({ payload }) {
       `/users/${login}/repos?page=1&per_page=10`
     );
 
-    yield put(searchSuccess(responseUser.data, repos.data));
+    if (repos.data.length === 0) {
+      toast.error('This user doesnt have any repository');
+    }
 
+    yield put(searchSuccess(responseUser.data, repos.data));
     history.push('/users');
   } catch (err) {
     toast.error('User not found');

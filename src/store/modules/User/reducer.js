@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   user: {},
   repos: [],
   loading: false,
+  page: 1,
 };
 
 export default function search(state = INITIAL_STATE, action) {
@@ -23,17 +24,12 @@ export default function search(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
-      case '@user/UPDATE_REPOS_REQUEST': {
-        draft.loading = true;
-        break;
-      }
-      case '@user/UPDATE_REPOS_SUCCESS': {
-        draft.repos = action.payload.repos;
-        draft.loading = false;
-        break;
-      }
       case '@user/SEARCH_REPOS': {
         draft.repos = action.payload.repos;
+        break;
+      }
+      case '@user/UPDATE_PAGE': {
+        draft.page = action.payload.page;
         break;
       }
       default:

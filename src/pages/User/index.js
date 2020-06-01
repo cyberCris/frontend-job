@@ -14,7 +14,7 @@ import CardContent from '@material-ui/core/CardContent';
 
 import { toast } from 'react-toastify';
 import Search from '~/components/Search';
-import { searchRepo } from '~/store/modules/user/actions';
+import { searchRepo, updatePage } from '~/store/modules/user/actions';
 import api from '~/services/api';
 
 import {
@@ -34,13 +34,14 @@ import { Center } from '~/pages/Home/styles';
 export default function User() {
   const dispatch = useDispatch();
 
-  const [page, setPage] = useState(1);
   const [disabledB, setDisabledB] = useState(false);
+  const [disabledN, setDisabledN] = useState(false);
   const [repoLoading, setRepoLoading] = useState(false);
 
   const user = useSelector((state) => state.user.user);
   const repositories = useSelector((state) => state.user.repos);
   const loading = useSelector((state) => state.user.loading);
+  const page = useSelector((state) => state.user.page);
 
   const sortedRepos = orderBy(repositories, ['stargazers_count'], 'desc');
 
@@ -52,15 +53,31 @@ export default function User() {
     }
   }, [page]);
 
+  useEffect(() => {
+    if (repositories.length < 10 || repositories.length === 0) {
+      setDisabledN(true);
+    } else {
+      setDisabledN(false);
+    }
+  }, [repositories]);
+
   const GetRepos = useCallback(
     async (login, pag) => {
       try {
+        setRepoLoading(true);
         const { data } = await api.get(
           `/users/${login}/repos?page=${pag}&per_page=10`
         );
 
-        dispatch(searchRepo(data));
+        if (data.length === 0) {
+          toast.error('No more repositories');
+        } else {
+          dispatch(searchRepo(data));
+        }
+
+        setRepoLoading(false);
       } catch (err) {
+        setRepoLoading(false);
         toast.error(err);
       }
     },
@@ -68,12 +85,12 @@ export default function User() {
   );
 
   function handleNext() {
-    setPage(page + 1);
+    dispatch(updatePage(page + 1));
     GetRepos(user.login, page + 1);
   }
 
   function handlePrevious() {
-    setPage(page - 1);
+    dispatch(updatePage(page - 1));
     GetRepos(user.login, page - 1);
   }
 
@@ -155,7 +172,12 @@ export default function User() {
                   </Grid>
                   <Grid item sm={6} xs={6}>
                     <Navigation start>
-                      <Button type="button" onClick={handleNext} right>
+                      <Button
+                        type="button"
+                        onClick={handleNext}
+                        disabled={disabledN}
+                        right
+                      >
                         <FiArrowRight size={30} color="#fff" />
                       </Button>
                     </Navigation>

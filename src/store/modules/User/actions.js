@@ -24,3 +24,10 @@ export function searchRepo(repos) {
     payload: { repos },
   };
 }
+
+export function updatePage(page) {
+  return {
+    type: '@user/UPDATE_PAGE',
+    payload: { page },
+  };
+}

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { searchRequest } from '~/store/modules/user/actions';
+import { searchRequest, updatePage } from '~/store/modules/user/actions';
 
 import { Container, Form } from './styles';
 
@@ -22,6 +22,7 @@ export default function Search({ row }) {
     e.preventDefault();
 
     dispatch(searchRequest(login));
+    dispatch(updatePage(1));
   }
 
   return (
