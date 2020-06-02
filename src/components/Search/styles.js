@@ -16,7 +16,7 @@ export const Container = styled.div`
     text-align: center;
     margin-right: ${(props) => (props.row ? '20px' : 0)};
 
-    @media screen and (max-width: 360px) {
+    @media screen and (max-width: 350px) {
       font-size: 20px;
     }
 
@@ -44,9 +44,15 @@ export const Form = styled.form`
     color: #696a6d;
     letter-spacing: 0.3px;
 
-    @media screen and (max-width: 360px) {
-      width: 220px;
+    @media screen and (max-width: 380px) {
+      width: 226px;
       font-size: 12px;
+      padding: 10px 11px;
+    }
+
+    @media screen and (max-width: 340px) {
+      width: 210px;
+      font-size: 11px;
     }
 
     @-moz-document url-prefix() {
