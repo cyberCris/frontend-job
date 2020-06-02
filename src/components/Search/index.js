@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { searchRequest, updatePage } from '~/store/modules/user/actions';
+import { searchRequest, updatePage } from '~/store/modules/User/actions';
 
 import { Container, Form } from './styles';
 
 export default function Search({ row, limit }) {
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.User.user);
 
   const dispatch = useDispatch();
 

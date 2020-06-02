@@ -1,33 +1,33 @@
 export function searchRequest(login) {
   return {
-    type: '@user/SEARCH_REQUEST',
+    type: '@githubsearch/SEARCH_REQUEST',
     payload: { login },
   };
 }
 
 export function searchSuccess(user, repos) {
   return {
-    type: '@user/SEARCH_SUCCESS',
+    type: '@githubsearch/SEARCH_SUCCESS',
     payload: { user, repos },
   };
 }
 
 export function searchFailure() {
   return {
-    type: '@user/SEARCH_FAILURE',
+    type: '@githubsearch/SEARCH_FAILURE',
   };
 }
 
 export function searchRepo(repos) {
   return {
-    type: '@user/SEARCH_REPOS',
+    type: '@githubsearch/SEARCH_REPOS',
     payload: { repos },
   };
 }
 
 export function updatePage(page) {
   return {
-    type: '@user/UPDATE_PAGE',
+    type: '@githubsearch/UPDATE_PAGE',
     payload: { page },
   };
 }

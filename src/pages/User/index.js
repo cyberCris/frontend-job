@@ -14,7 +14,7 @@ import CardContent from '@material-ui/core/CardContent';
 
 import { toast } from 'react-toastify';
 import Search from '~/components/Search';
-import { searchRepo, updatePage } from '~/store/modules/user/actions';
+import { searchRepo, updatePage } from '~/store/modules/User/actions';
 import api from '~/services/api';
 
 import {
@@ -39,10 +39,10 @@ export default function User() {
   const [repoLoading, setRepoLoading] = useState(false);
   const [limit, setLimit] = useState(false);
 
-  const user = useSelector((state) => state.user.user);
-  const repositories = useSelector((state) => state.user.repos);
-  const loading = useSelector((state) => state.user.loading);
-  const page = useSelector((state) => state.user.page);
+  const user = useSelector((state) => state.User.user);
+  const repositories = useSelector((state) => state.User.repos);
+  const loading = useSelector((state) => state.User.loading);
+  const page = useSelector((state) => state.User.page);
 
   const sortedRepos = orderBy(repositories, ['stargazers_count'], 'desc');
 

@@ -7,7 +7,7 @@ import Search from '~/components/Search';
 import { Container, Center } from './styles';
 
 export default function Home() {
-  const loading = useSelector((state) => state.user.loading);
+  const loading = useSelector((state) => state.User.loading);
   return (
     <>
       {!loading ? (

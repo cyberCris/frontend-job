@@ -29,4 +29,4 @@ export function* getUser({ payload }) {
   }
 }
 
-export default all([takeLatest('@user/SEARCH_REQUEST', getUser)]);
+export default all([takeLatest('@githubsearch/SEARCH_REQUEST', getUser)]);

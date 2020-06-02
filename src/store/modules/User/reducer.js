@@ -7,28 +7,28 @@ const INITIAL_STATE = {
   page: 1,
 };
 
-export default function search(state = INITIAL_STATE, action) {
+export default function auth(state = INITIAL_STATE, action) {
   return produce(state, (draft) => {
     switch (action.type) {
-      case '@user/SEARCH_REQUEST': {
+      case '@githubsearch/SEARCH_REQUEST': {
         draft.loading = true;
         break;
       }
-      case '@user/SEARCH_SUCCESS': {
+      case '@githubsearch/SEARCH_SUCCESS': {
         draft.user = action.payload.user;
         draft.repos = action.payload.repos;
         draft.loading = false;
         break;
       }
-      case '@user/SEARCH_FAILURE': {
+      case '@githubsearch/SEARCH_FAILURE': {
         draft.loading = false;
         break;
       }
-      case '@user/SEARCH_REPOS': {
+      case '@githubsearch/SEARCH_REPOS': {
         draft.repos = action.payload.repos;
         break;
       }
-      case '@user/UPDATE_PAGE': {
+      case '@githubsearch/UPDATE_PAGE': {
         draft.page = action.payload.page;
         break;
       }
