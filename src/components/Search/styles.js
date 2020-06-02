@@ -44,20 +44,29 @@ export const Form = styled.form`
     color: #696a6d;
     letter-spacing: 0.3px;
 
+    @-moz-document url-prefix() {
+      font-family: Arial, sans-serif;
+      width: 260px;
+      font-size: 14px;
+    }
+
     @media screen and (max-width: 380px) {
       width: 226px;
       font-size: 12px;
       padding: 10px 11px;
+
+      @-moz-document url-prefix() {
+        padding: 10px 15px;
+      }
     }
 
     @media screen and (max-width: 340px) {
       width: 210px;
       font-size: 11px;
-    }
 
-    @-moz-document url-prefix() {
-      font-family: Arial, sans-serif;
-      padding: 12px;
+      @-moz-document url-prefix() {
+        padding: 10px 15px;
+      }
     }
   }
 `;
