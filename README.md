@@ -24,7 +24,7 @@
 
 Application that consumes the github API and returns user information and its repositories
 
-## :cloud: Demo - Live Application
+## :cloud: Demo 
 
 [GithubSearch](https://githubsearch-reactjs.herokuapp.com/)
 
