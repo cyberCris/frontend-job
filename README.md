@@ -24,6 +24,10 @@
 
 Application that consumes the github API and returns user information and its repositories
 
+## :cloud: Demo - Live Application
+
+[GithubSearch](https://githubsearch-reactjs.herokuapp.com/)
+
 ## :space_invader: Features
 
 This app features all the latest tools and practices in web development!
