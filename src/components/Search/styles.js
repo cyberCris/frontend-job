@@ -48,5 +48,10 @@ export const Form = styled.form`
       width: 220px;
       font-size: 12px;
     }
+
+    @-moz-document url-prefix() {
+      font-family: Arial, sans-serif;
+      padding: 12px;
+    }
   }
 `;
