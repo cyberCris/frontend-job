@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img  alt="GithubSearch"  src="https://p7.hiclipart.com/preview/836/746/349/github-repository-source-code-gradle-fork-github.jpg"  width="200px" />
+    <img  alt="GithubSearch" src="https://media.wired.com/photos/5955c62d5992c54331ac19b4/master/pass/inspectocat.jpg"  width="400px" />
 </h1>
 
 <h3 align="center">
@@ -22,8 +22,7 @@
 
 ## :rocket: About
 
-Rocketseat application in GoStack 8.0 Advanced Reactjs module.
-Basically this app manages an Barber where users makes appointments and this notifys providers.
+Application that consumes the github API and returns user information and its repositories
 
 ## :space_invader: Features
 
