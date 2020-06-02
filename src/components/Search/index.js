@@ -7,7 +7,7 @@ import { searchRequest, updatePage } from '~/store/modules/user/actions';
 
 import { Container, Form } from './styles';
 
-export default function Search({ row }) {
+export default function Search({ row, limit }) {
   const user = useSelector((state) => state.user.user);
 
   const dispatch = useDispatch();
@@ -21,6 +21,7 @@ export default function Search({ row }) {
   async function handleSubmit(e) {
     e.preventDefault();
 
+    if (row) limit(false);
     dispatch(searchRequest(login));
     dispatch(updatePage(1));
   }

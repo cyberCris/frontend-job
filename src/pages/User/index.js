@@ -37,6 +37,7 @@ export default function User() {
   const [disabledB, setDisabledB] = useState(false);
   const [disabledN, setDisabledN] = useState(false);
   const [repoLoading, setRepoLoading] = useState(false);
+  const [limit, setLimit] = useState(false);
 
   const user = useSelector((state) => state.user.user);
   const repositories = useSelector((state) => state.user.repos);
@@ -44,6 +45,10 @@ export default function User() {
   const page = useSelector((state) => state.user.page);
 
   const sortedRepos = orderBy(repositories, ['stargazers_count'], 'desc');
+
+  useEffect(() => {
+    if (repositories.length <= 8) setLimit(true);
+  }, [repositories.length]);
 
   useEffect(() => {
     if (page === 1) {
@@ -96,8 +101,8 @@ export default function User() {
 
   return (
     <>
-      <Search row />
-      <Container>
+      <Search row limit={setLimit} />
+      <Container limit={limit}>
         {!loading ? (
           <>
             <Grid container spacing={3}>
@@ -137,21 +142,27 @@ export default function User() {
                 </StyledCard>
               </Grid>
               <Grid item sm={9} xs={12}>
-                <Grid container spacing={2}>
-                  {sortedRepos.map((repo) => (
-                    <Grid item key={repo.name} sm={6} xs={6}>
-                      <StyledCard>
-                        <CardContent>
-                          <Title>{repo.name}</Title>
-                          <Star>
-                            <FaStar />
-                            <p>{repo.stargazers_count}</p>
-                          </Star>
-                        </CardContent>
-                      </StyledCard>
-                    </Grid>
-                  ))}
-                </Grid>
+                {!repoLoading ? (
+                  <Grid container spacing={2}>
+                    {sortedRepos.map((repo) => (
+                      <Grid item key={repo.name} sm={6} xs={6}>
+                        <StyledCard>
+                          <CardContent>
+                            <Title>{repo.name}</Title>
+                            <Star>
+                              <FaStar />
+                              <p>{repo.stargazers_count}</p>
+                            </Star>
+                          </CardContent>
+                        </StyledCard>
+                      </Grid>
+                    ))}
+                  </Grid>
+                ) : (
+                  <Center>
+                    <PulseLoader size={28} color="#fff" loading={repoLoading} />
+                  </Center>
+                )}
               </Grid>
               <Grid item sm={3} xs={12}>
                 <Hidden />

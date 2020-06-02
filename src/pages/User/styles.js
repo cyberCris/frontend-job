@@ -3,7 +3,7 @@ import Card from '@material-ui/core/Card';
 import { withStyles } from '@material-ui/core/styles';
 
 export const Container = styled.div`
-  height: 100%;
+  height: ${(props) => (!props.limit ? '100%' : '')};
   margin: 10px 20px 0px;
 
   h1 {

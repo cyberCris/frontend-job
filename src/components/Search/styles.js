@@ -16,6 +16,10 @@ export const Container = styled.div`
     text-align: center;
     margin-right: ${(props) => (props.row ? '20px' : 0)};
 
+    @media screen and (max-width: 360px) {
+      font-size: 20px;
+    }
+
     span {
       color: #b6b8bd;
       font-family: 'Poppins', sans-serif;
@@ -39,5 +43,10 @@ export const Form = styled.form`
     background: #342e47;
     color: #696a6d;
     letter-spacing: 0.3px;
+
+    @media screen and (max-width: 360px) {
+      width: 220px;
+      font-size: 12px;
+    }
   }
 `;
