@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -22,8 +23,13 @@ export default function Search({ row, limit }) {
     e.preventDefault();
 
     if (row) limit(false);
-    dispatch(searchRequest(login));
-    dispatch(updatePage(1));
+
+    if (login !== '') {
+      dispatch(searchRequest(login));
+      dispatch(updatePage(1));
+    } else {
+      toast.error('Username is a required field');
+    }
   }
 
   return (
@@ -49,8 +55,10 @@ export default function Search({ row, limit }) {
 
 Search.propTypes = {
   row: PropTypes.bool,
+  limit: PropTypes.bool,
 };
 
 Search.defaultProps = {
   row: false,
+  limit: false,
 };
