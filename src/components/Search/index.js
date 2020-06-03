@@ -22,7 +22,7 @@ export default function Search({ row, limit }) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (row) limit(false);
+    if (row && login !== '') limit(false);
 
     if (login !== '') {
       dispatch(searchRequest(login));
